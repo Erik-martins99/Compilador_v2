@@ -14,9 +14,11 @@ public class TabelaSimbolos {
     public String retornaTipo(String value) {
         String tipo;
 
-        if (value.matches("\\d+")) {
+        //\d+   \d+\.\d+
+
+        if (value.matches("[0-9][0-9]*")) {
             return t.NUM_INT.toString();
-        } else if(value.matches("\\d+\\.\\d+")) {
+        } else if(value.matches("([0-9][0-9]*)\\.([0-9]|[0-9][0-9])")) {
             return t.NUM_REAL.toString();
         } else if(value.matches("[a-z][a-z]*")) {
             return t.ID.toString();

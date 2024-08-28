@@ -12,7 +12,7 @@ public class AnalisadorLexico {
     public AnalisadorLexico() {};
 
     public  ArrayList<String> retornaExpressoes() {
-        String regex = "\\d+(\\.\\d+)?|[+\\-*/()]|[a-z][a-z]*|[A-Z][A-Z]*";
+        String regex = "\\d+(\\.\\d+)?|[+\\-*/()]|[a-z]+([A-Z]+)?([a-z]|[A-Z]|[0-9]|.)*";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(this.codigo);
 
