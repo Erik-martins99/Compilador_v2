@@ -4,11 +4,13 @@ public class Token {
     private String tipo;
     private String simbolo;
     private int linha;
+    private int coluna;
 
-    public Token(String tipo, String simbolo, int linha) {
+    public Token(String tipo, String simbolo, int linha, int coluna) {
         this.tipo = tipo;
         this.simbolo = simbolo;
         this.linha = linha;
+        this.coluna = coluna;
     }
 
     public String getTipo() {
@@ -35,14 +37,22 @@ public class Token {
         this.linha = linha;
     }
 
+    public int getColuna() {
+        return coluna;
+    }
+
+    public void setColuna(int coluna) {
+        this.coluna = coluna;
+    }
+
     @Override
     public String toString() {
-        // Determina o comprimento máximo dos campos 'tipo' e 'simbolo'
-        int maxTipoLength = 15;  // Exemplo de valor, ajuste conforme necessário
-        int maxSimboloLength = 10;  // Exemplo de valor, ajuste conforme necessário
+        int maxTipoLength = 15;
+        int maxSimboloLength = 10;
+        int maxSLineLength = 10;
 
-        // Formata a saída com os campos alinhados
-        return String.format("<%-" + maxTipoLength + "s : %-"+ maxSimboloLength + "s : %d",
-                this.tipo + ">", this.simbolo, this.linha);
+        return String.format(
+                "<%-" + maxTipoLength + "s : %-"+ maxSimboloLength + "s : %d          : %d",
+                this.tipo + ">", this.simbolo, this.linha, this.coluna);
     }
 }

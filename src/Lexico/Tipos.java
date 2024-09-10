@@ -1,5 +1,6 @@
 package Lexico;
 
 public enum Tipos {
-    OPSOMA, OPSUB, OPMUL, OPDIV, AP, FP, NUM_INT, NUM_REAL, ID
+    OPSOMA, OPSUB, OPMUL, OPDIV, OPATRUI,
+    AP, FP, NUM_INT, NUM_REAL, ID
 }

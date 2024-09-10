@@ -8,19 +8,26 @@ public class TabelaSimbolos {
             t.OPMUL.toString(),
             t.OPDIV.toString(),
             t.AP.toString(),
-            t.FP.toString(),}, {"+", "-", "*", "/", "(", ")",}};
+            t.FP.toString(),
+            t.OPATRUI.toString(),}, {"+", "-", "*", "/", "(", ")", "="}};
 
+
+    public String[][] getTabelaDeSimbolos() {
+        return tabelaDeSimbolos;
+    }
+
+    public void setTabelaDeSimbolos(String[][] simbolicTable) {
+        this.tabelaDeSimbolos = simbolicTable;
+    }
 
     public String retornaTipo(String value) {
         String tipo;
-
-        //\d+   \d+\.\d+
 
         if (value.matches("[0-9][0-9]*")) {
             return t.NUM_INT.toString();
         } else if(value.matches("([0-9][0-9]*)\\.([0-9]|[0-9][0-9])")) {
             return t.NUM_REAL.toString();
-        } else if(value.matches("[a-z][a-z]*")) {
+        } else if(value.matches("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*")) {
             return t.ID.toString();
         }
 
@@ -32,13 +39,4 @@ public class TabelaSimbolos {
         }
         return t.ID.toString();
     }
-
-    public String[][] getTabelaDeSimbolos() {
-        return tabelaDeSimbolos;
-    }
-
-    public void setTabelaDeSimbolos(String[][] simbolicTable) {
-        this.tabelaDeSimbolos = simbolicTable;
-    }
-
 }

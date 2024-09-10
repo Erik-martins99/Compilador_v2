@@ -1,5 +1,3 @@
-import Lexico.TabelaSimbolos;
-import Lexico.Tipos;
 import Reader.Reader;
 
 public class Main {

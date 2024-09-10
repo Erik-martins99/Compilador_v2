@@ -1,7 +1,6 @@
 package Reader;
 
 import Lexico.AnalisadorLexico;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -32,5 +31,4 @@ public class Reader {
             e.printStackTrace();
         }
     }
-
 }
