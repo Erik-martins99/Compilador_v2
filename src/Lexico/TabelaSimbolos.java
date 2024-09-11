@@ -9,7 +9,15 @@ public class TabelaSimbolos {
             t.OPDIV.toString(),
             t.AP.toString(),
             t.FP.toString(),
-            t.OPATRUI.toString(),}, {"+", "-", "*", "/", "(", ")", "="}};
+            t.OPIGUAL.toString(),
+            t.OPMAIOR.toString(),
+            t.OPMENOR.toString(),
+            t.OPMAIORIGUAL.toString(),
+            t.OPMENORIGUAL.toString(),
+            t.OPNEG.toString(),
+            t.OPDIFE.toString()},
+            {"+", "-", "*", "/", "(", ")", "=",
+            ">", "<", ">=", "<=", "!", "!="}};
 
 
     public String[][] getTabelaDeSimbolos() {
@@ -27,6 +35,18 @@ public class TabelaSimbolos {
             return t.NUM_INT.toString();
         } else if(value.matches("([0-9][0-9]*)\\.([0-9]|[0-9][0-9])")) {
             return t.NUM_REAL.toString();
+        } else if(value.equals("int")) {
+            return t.INTEGER.toString();
+        } else if(value.equals("double")) {
+            return t.DOUBLE.toString();
+        } else if(value.equals("String")) {
+            return t.STRING.toString();
+        } else if(value.equals("boolean")) {
+            return t.BOOLEAN.toString();
+        } else if(value.equals("AND")) {
+            return t.COND_AND.toString();
+        } else if(value.equals("OR")) {
+            return t.COND_OR.toString();
         } else if(value.matches("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*")) {
             return t.ID.toString();
         }

@@ -1,4 +1,9 @@
-a = 10 + 2
-b = 9 - 4
-c = 4 / 2
-res = a + (b*c) - 2.75
+int a = 10 + 2
+double b = 9 - 4
+String c = 4 / 2
+boolean res = a + (b*c) - 2.75
+! != =!
+< <= =<
+> >= =>
+AND
+OR
