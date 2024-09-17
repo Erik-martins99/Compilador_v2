@@ -1,0 +1,25 @@
+Tipo;Valor;Linha;Coluna
+STRING;String;1;1
+ID;message;1;2
+OPIGUAL;=;1;3
+TXTSTRING;"Ola mundo!";1;4
+PV;";";1;5
+STRING;String;2;1
+ID;conta;2;2
+OPIGUAL;=;2;3
+TXTSTRING;"23 - 2 * 5";2;4
+PV;";";2;5
+INTEGER;int;3;1
+OPIGUAL;=;3;2
+NUM_INT;5;3;3
+OPSOMA;+;3;4
+NUM_INT;2;3;5
+OPMUL;*;3;6
+NUM_INT;7;3;7
+PV;";";3;8
+COND_AND;AND;4;1
+COND_OR;OR;4;2
+PV;";";4;3
+BOOLEAN;boolean;5;1
+DOUBLE;double;5;2
+PV;";";5;3

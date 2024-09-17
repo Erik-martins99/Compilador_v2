@@ -20,31 +20,14 @@ public class Reader {
 
         try (BufferedReader br = new BufferedReader(new FileReader(this.path))) {
 
-            String linha;
+            String conteudoDaLinha;
             AnalisadorLexico a = new AnalisadorLexico();
-            int nLinha = 1;
-            String teste = "";
+            String stringCodigo = "";
 
-            while ((linha = br.readLine()) != null) {
-                //a.setCodigo(linha);
-                //a.setLinha(nLinha);
-                //a.mostraTabela();
-
-                //System.out.println(linha);
-                teste += linha + " ";
-                /*
-                for(int i=0; i < a.retornaTokens().size(); i++) {
-                    this.listaDeTokens.add(a.retornaTokens().get(i));
-                }
-
-                for(int i=0; i < this.listaDeTokens.size(); i++) {
-                    System.out.println(this.listaDeTokens.get(i));
-                }*/
-                //nLinha++;
+            while ((conteudoDaLinha = br.readLine()) != null) {
+                stringCodigo += conteudoDaLinha + " ";
             }
-            a.setCodigo(teste);
-            a.mostraTabela();
-            //System.out.println(teste);
+            a.setCodigo(stringCodigo);
             Output.gerarTxt(a.retornaTokens());
         } catch (
                 IOException e) {

@@ -23,12 +23,8 @@ public class AnalisadorLexico {
         return linha;
     }
 
-    public void setLinha(int linha) {
-        this.linha = linha;
-    }
-
     public  ArrayList<String> retornaExpressoes() {
-        String regex = "\".*\"|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
+        String regex = "\"([^\"]+)\"|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(this.codigo);
 
@@ -51,26 +47,44 @@ public class AnalisadorLexico {
                     this.linha);
             tokens.add(token);
 
+            if(retornaErro(token)) {
+                tokens.remove(tokens.size()-1);
+                tokens.add(token);
+                break;
+            }
+
             if(tabela.retornaTipo(expressoes.get(i)) == "PV") {
                 this.linha ++;
             }
+
+            token.setColuna(coluna);
 
             if(tabela.retornaTipo(expressoes.get(i)) == "PV") {
                 coluna = 0;
             }
 
-            token.setColuna(coluna);
             coluna ++;
         }
+        mostraTabela(tokens);
 
         return tokens;
     }
 
-    public void mostraTabela() {
-        ArrayList<Token> tokens = retornaTokens();
+    private void mostraTabela( ArrayList<Token> tokens) {
 
         for(int i=0; i < tokens.size(); i++) {
             System.out.println(tokens.get(i).toString());
+        }
+    }
+
+    public boolean retornaErro(Token t) {
+        if(t.getTipo().equals("ERROR")) {
+            t.setSimbolo("ERROR: value >>> " + t.getSimbolo() + " <<< Line: " + t.getLinha() + " Colunm: " + t.getColuna());
+            System.out.println(t.getSimbolo());
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }

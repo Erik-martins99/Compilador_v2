@@ -11,23 +11,35 @@ public class Output {
 
         ArrayList<Token> listaDeTokens = tokens;
 
-        String fileName = "output_lexico.csv";
+        String fileName = "C:\\Users\\kinka\\OneDrive\\Documentos\\compiadores\\Compilador_Calculadora_V1\\src\\output_lexico.csv";
 
         try (FileWriter writer = new FileWriter(fileName)) {
-            // Escrever cabeçalho
+
             writer.append("Tipo;Valor;Linha;Coluna");
             writer.append("\n");
 
-            // Escrever dados
             for (Token t : listaDeTokens) {
-                writer.append(t.getTipo())
-                        .append(",")
-                        .append(String.valueOf(t.getSimbolo()))
-                        .append(",")
-                        .append(String.valueOf(t.getLinha()))
-                        .append(",")
-                        .append(String.valueOf(t.getColuna()))
-                        .append("\n");
+                String simbolo = t.getSimbolo();
+                if(t.getTipo().equals("PV")) {
+                    simbolo = "\";\"";
+                }
+                String linha = String.valueOf(t.getLinha());
+
+                if(!t.getTipo().equals("ERROR")) {
+                    writer.append(t.getTipo())
+                            .append(";")
+                            .append(simbolo)
+                            .append(";")
+                            .append(linha)
+                            .append(";")
+                            .append(String.valueOf(t.getColuna()))
+                            .append("\n");
+                } else {
+                    writer.append(t.getTipo())
+                            .append(";")
+                            .append(simbolo)
+                            .append("\n");
+                }
             }
 
         } catch (IOException e) {
