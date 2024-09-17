@@ -15,9 +15,10 @@ public class TabelaSimbolos {
             t.OPMAIORIGUAL.toString(),
             t.OPMENORIGUAL.toString(),
             t.OPNEG.toString(),
-            t.OPDIFE.toString()},
+            t.OPDIFE.toString(),
+            t.PV.toString()},
             {"+", "-", "*", "/", "(", ")", "=",
-            ">", "<", ">=", "<=", "!", "!="}};
+            ">", "<", ">=", "<=", "!", "!=",";"}};
 
 
     public String[][] getTabelaDeSimbolos() {
@@ -47,6 +48,8 @@ public class TabelaSimbolos {
             return t.COND_AND.toString();
         } else if(value.equals("OR")) {
             return t.COND_OR.toString();
+        } else if(value.matches("\".*\"")) {
+            return t.TXTSTRING.toString();
         } else if(value.matches("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*")) {
             return t.ID.toString();
         }
@@ -57,6 +60,6 @@ public class TabelaSimbolos {
                 return tipo;
             }
         }
-        return t.ID.toString();
+        return t.ERROR.toString();
     }
 }

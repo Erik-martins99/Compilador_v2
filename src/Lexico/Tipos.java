@@ -6,11 +6,15 @@ public enum Tipos {
 
     COND_AND, COND_OR,
 
-    AP, FP,
+    AP, FP, PV,
 
     NUM_INT, NUM_REAL,
 
     INTEGER, DOUBLE, STRING, BOOLEAN,
 
-    ID
+    TXTSTRING,
+
+    ID,
+
+    ERROR
 }

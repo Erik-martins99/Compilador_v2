@@ -6,11 +6,10 @@ public class Token {
     private int linha;
     private int coluna;
 
-    public Token(String tipo, String simbolo, int linha, int coluna) {
+    public Token(String tipo, String simbolo, int linha) {
         this.tipo = tipo;
         this.simbolo = simbolo;
         this.linha = linha;
-        this.coluna = coluna;
     }
 
     public String getTipo() {

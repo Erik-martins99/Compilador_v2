@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class AnalisadorLexico {
     private String codigo;
     private TabelaSimbolos tabela = new TabelaSimbolos();
-    private int linha;
+    private int linha = 1;
 
     public AnalisadorLexico() {};
 
@@ -28,7 +28,7 @@ public class AnalisadorLexico {
     }
 
     public  ArrayList<String> retornaExpressoes() {
-        String regex = "\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*";
+        String regex = "\".*\"|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(this.codigo);
 
@@ -42,14 +42,27 @@ public class AnalisadorLexico {
     public ArrayList<Token> retornaTokens() {
         ArrayList<String> expressoes = retornaExpressoes();
         ArrayList<Token> tokens = new ArrayList<>();
+        int coluna = 1;
 
         for (int i=0; i < expressoes.size(); i++) {
             var token = new Token(tabela.retornaTipo(
                     expressoes.get(i)),
                     expressoes.get(i),
-                    this.linha, i+1);
+                    this.linha);
             tokens.add(token);
+
+            if(tabela.retornaTipo(expressoes.get(i)) == "PV") {
+                this.linha ++;
+            }
+
+            if(tabela.retornaTipo(expressoes.get(i)) == "PV") {
+                coluna = 0;
+            }
+
+            token.setColuna(coluna);
+            coluna ++;
         }
+
         return tokens;
     }
 
