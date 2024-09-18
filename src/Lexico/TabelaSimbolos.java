@@ -16,9 +16,11 @@ public class TabelaSimbolos {
             t.OPMENORIGUAL.toString(),
             t.OPNEG.toString(),
             t.OPDIFE.toString(),
-            t.PV.toString()},
+            t.PV.toString(),
+            t.AC.toString(),
+            t.FC.toString()},
             {"+", "-", "*", "/", "(", ")", "=",
-            ">", "<", ">=", "<=", "!", "!=",";"}};
+            ">", "<", ">=", "<=", "!", "!=",";","{","}"}};
 
 
     public String[][] getTabelaDeSimbolos() {
@@ -36,19 +38,43 @@ public class TabelaSimbolos {
             return t.NUM_INT.toString();
         } else if(value.matches("([0-9][0-9]*)\\.([0-9]|[0-9][0-9])")) {
             return t.NUM_REAL.toString();
-        } else if(value.equals("int")) {
+        } else if(value.equals("Paladin")) {
             return t.INTEGER.toString();
-        } else if(value.equals("double")) {
+        } else if(value.equals("Druid")) {
             return t.DOUBLE.toString();
-        } else if(value.equals("String")) {
+        } else if(value.equals("Sorser")) {
             return t.STRING.toString();
-        } else if(value.equals("boolean")) {
+        } else if(value.equals("Knight")) {
             return t.BOOLEAN.toString();
         } else if(value.equals("AND")) {
             return t.COND_AND.toString();
         } else if(value.equals("OR")) {
             return t.COND_OR.toString();
-        } else if(value.matches("\".*\"")) {
+        } else if(value.equals("quest")) {
+            return t.FUN_IF.toString();
+        } else if(value.equals("peace")) {
+            return t.FUN_ELSE.toString();
+        } else if(value.equals("battle")) {
+            return t.FUN_FOR.toString();
+        } else if(value.equals("maze")) {
+            return t.FUN_WHILE.toString();
+        } else if(value.equals("invocation")) {
+            return t.FUN_PRINT.toString();
+        } else if(value.equals("kill")) {
+            return t.BREAK.toString();
+        } else if(value.equals("dungeon")) {
+            return t.DEF_CLASS.toString();
+        } else if(value.equals("mission")) {
+            return t.DEF_FUNCTION.toString();
+        } else if(value.equals("true")) {
+            return t.VL_TRUE.toString();
+        } else if(value.equals("false")) {
+            return t.VL_FALSE.toString();
+        }
+        else if(value.matches("[\\r\\n]+")) {
+            return t.LINE_BREAK.toString();
+        }
+        else if(value.matches("\".*\"")) {
             return t.TXTSTRING.toString();
         } else if(value.matches("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*")) {
             return t.ID.toString();

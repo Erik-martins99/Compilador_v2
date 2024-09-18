@@ -44,6 +44,7 @@ public class Token {
         this.coluna = coluna;
     }
 
+
     @Override
     public String toString() {
         int maxTipoLength = 15;

@@ -6,13 +6,21 @@ public enum Tipos {
 
     COND_AND, COND_OR,
 
-    AP, FP, PV,
+    AP, FP, AC, FC, PV,
 
     NUM_INT, NUM_REAL,
 
-    INTEGER, DOUBLE, STRING, BOOLEAN,
+    INTEGER, DOUBLE, STRING, BOOLEAN, VL_TRUE, VL_FALSE,
 
     TXTSTRING,
+
+    FUN_IF, FUN_ELSE, FUN_FOR, FUN_WHILE, FUN_PRINT,
+
+    DEF_CLASS, DEF_FUNCTION,
+
+    BREAK,
+
+    LINE_BREAK,
 
     ID,
 

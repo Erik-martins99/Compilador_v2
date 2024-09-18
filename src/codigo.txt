@@ -1,12 +1,20 @@
-1;
-1.1;
-int;
-String;
-double;
-boolean;
-"String &&";
-! != =!;
-< <= =<;
-> >= =>;
-AND;
-OR;
+dungeon pessoa () {
+	Knight p1 = true;
+	Paladin	p2 = (3 + 4 /5 * 8);
+	Druid p3 = 10.11;
+	Sorcer p4 = "false";
+
+	mission mostra() {
+		invocation("Hello world!");
+	}
+
+	mission corre(Knight num) {
+		battle(num; num < 10; num++){
+			quest(num = 5) {
+				kill;
+			} peace {
+				maze(false);
+			}
+		}
+	}
+}

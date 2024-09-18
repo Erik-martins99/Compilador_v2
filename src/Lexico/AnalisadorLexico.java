@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class AnalisadorLexico {
     private String codigo;
     private TabelaSimbolos tabela = new TabelaSimbolos();
-    private int linha = 1;
+    private int linha;
 
     public AnalisadorLexico() {};
 
@@ -23,8 +23,12 @@ public class AnalisadorLexico {
         return linha;
     }
 
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+
     public  ArrayList<String> retornaExpressoes() {
-        String regex = "\"([^\"]+)\"|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
+        String regex = "\"([^\"]+)\"|[\\r]|[\\n]|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;{}]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(this.codigo);
 
@@ -53,9 +57,11 @@ public class AnalisadorLexico {
                 break;
             }
 
-            if(tabela.retornaTipo(expressoes.get(i)) == "PV") {
+            /*
+            if(tabela.retornaTipo(expressoes.get(i)).equals("PV")
+                    || tabela.retornaTipo(expressoes.get(i)).equals("LINE_BREAK")) {
                 this.linha ++;
-            }
+            }*/
 
             token.setColuna(coluna);
 
@@ -65,17 +71,18 @@ public class AnalisadorLexico {
 
             coluna ++;
         }
-        mostraTabela(tokens);
+        //mostraTabela(tokens);
 
         return tokens;
     }
 
+    /*
     private void mostraTabela( ArrayList<Token> tokens) {
 
         for(int i=0; i < tokens.size(); i++) {
             System.out.println(tokens.get(i).toString());
         }
-    }
+    }*/
 
     public boolean retornaErro(Token t) {
         if(t.getTipo().equals("ERROR")) {

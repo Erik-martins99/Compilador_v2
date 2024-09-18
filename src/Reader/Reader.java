@@ -22,13 +22,32 @@ public class Reader {
 
             String conteudoDaLinha;
             AnalisadorLexico a = new AnalisadorLexico();
-            String stringCodigo = "";
+            ArrayList<Token> tokens = new ArrayList<>();
+            //String stringCodigo = "";
+            int linha = 1;
+            boolean verificaErro = true;
 
             while ((conteudoDaLinha = br.readLine()) != null) {
-                stringCodigo += conteudoDaLinha + " ";
+                //stringCodigo += conteudoDaLinha + " ";
+                a.setCodigo(conteudoDaLinha);
+                a.setLinha(linha);
+                for(int i=0; i < a.retornaTokens().size(); i++) {
+                    tokens.add(a.retornaTokens().get(i));
+                    if(a.retornaTokens().get(i).getTipo().equals("ERROR")) {
+                        verificaErro = false;
+                        break;
+                    }
+                }
+                if(!verificaErro) {
+                    break;
+                }
+                linha ++;
             }
-            a.setCodigo(stringCodigo);
-            Output.gerarTxt(a.retornaTokens());
+            //a.setCodigo(stringCodigo);
+            for (int i=0; i < tokens.size(); i++) {
+                System.out.println(tokens.get(i));
+            }
+            Output.gerarTxt(tokens);
         } catch (
                 IOException e) {
             e.printStackTrace();
