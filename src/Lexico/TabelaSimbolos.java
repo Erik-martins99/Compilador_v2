@@ -18,9 +18,10 @@ public class TabelaSimbolos {
             t.OPDIFE.toString(),
             t.PV.toString(),
             t.AC.toString(),
-            t.FC.toString()},
-            {"+", "-", "*", "/", "(", ")", "=",
-            ">", "<", ">=", "<=", "!", "!=",";","{","}"}};
+            t.FC.toString(),
+            t.OPATRIBUICAO.toString()},
+            {"+", "-", "*", "/", "(", ")", "==",
+            ">", "<", ">=", "<=", "!", "!=",";","{","}", "="}};
 
 
     public String[][] getTabelaDeSimbolos() {
@@ -70,6 +71,16 @@ public class TabelaSimbolos {
             return t.VL_TRUE.toString();
         } else if(value.equals("false")) {
             return t.VL_FALSE.toString();
+        } else if(value.equals("rogue")) {
+            return t.RETURN.toString();
+        } else if(value.equals("shedow")) {
+            return t.VOID.toString();
+        } else if(value.equals("mage")) {
+            return t.STATIC.toString();
+        } else if(value.equals("space")) {
+            return t.NULL.toString();
+        } else if(value.equals("skill")) {
+            return t.CLASS_ATTR.toString();
         }
         else if(value.matches("[\\r\\n]+")) {
             return t.LINE_BREAK.toString();

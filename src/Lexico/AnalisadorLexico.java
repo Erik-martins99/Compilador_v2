@@ -28,7 +28,8 @@ public class AnalisadorLexico {
     }
 
     public  ArrayList<String> retornaExpressoes() {
-        String regex = "\"([^\"]+)\"|[\\r]|[\\n]|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;{}]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
+        //[\r]|[\n]
+        String regex = "\"([^\"]+)\"|(==)|\\d+(\\.\\d+)?|([<][=])|([>][=])|([!][=])|[+\\-*/()=!<>;{}]|([a-z]|[A-Z])+([A-Z]+)?([a-z]|[A-Z]|[0-9])*|\\S+[^;]";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(this.codigo);
 
@@ -51,6 +52,9 @@ public class AnalisadorLexico {
                     this.linha);
             tokens.add(token);
 
+            token.setColuna(coluna);
+            coluna ++;
+
             if(retornaErro(token)) {
                 tokens.remove(tokens.size()-1);
                 tokens.add(token);
@@ -63,13 +67,9 @@ public class AnalisadorLexico {
                 this.linha ++;
             }*/
 
-            token.setColuna(coluna);
-
             if(tabela.retornaTipo(expressoes.get(i)) == "PV") {
                 coluna = 0;
             }
-
-            coluna ++;
         }
         //mostraTabela(tokens);
 

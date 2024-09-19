@@ -11,7 +11,7 @@ public class Output {
 
         ArrayList<Token> listaDeTokens = tokens;
 
-        String fileName = "C:\\Users\\kinka\\OneDrive\\Documentos\\compiadores\\Compilador_Calculadora_V1\\src\\output_lexico.csv";
+        String fileName = "output_lexico.csv";
 
         try (FileWriter writer = new FileWriter(fileName)) {
 
