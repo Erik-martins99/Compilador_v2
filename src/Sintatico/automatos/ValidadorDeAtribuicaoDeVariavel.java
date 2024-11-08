@@ -43,6 +43,7 @@ public class ValidadorDeAtribuicaoDeVariavel {
         return false;
     }
 
+
     public boolean getFinal(String value){
         String variableEnd = "PV";
         if(value.equals(variableEnd)){
@@ -105,11 +106,17 @@ public class ValidadorDeAtribuicaoDeVariavel {
                                     System.out.println("ERROR: Valor atribuido invalido!!!");
                                     return false;
                                 }
+                                if (tokens.get(contador).getTipo().equals("AP")) {
+                                    contador++;
+                                }
                                 if (getPrimeiroOuUltimoValor(tokens.get(contador).getTipo())) {
                                     contador++;
                                 } else {
                                     System.out.println("ERROR: Valor atribuido invalido!!!");
                                     return false;
+                                }
+                                if (tokens.get(contador).getTipo().equals("FP")) {
+                                    contador++;
                                 }
                                 if (getFinal(tokens.get(contador).getTipo())) {
                                     estado++;

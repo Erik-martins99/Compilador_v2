@@ -2,7 +2,7 @@ package Reader;
 
 import Lexico.AnalisadorLexico;
 import Lexico.Token;
-import Sintatico.ValidaAtribuicao;
+import Sintatico.AnalisadorSintatico;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Reader {
     private String path;
     private ArrayList<Token> listaDeTokens = new ArrayList<>();
-    private ValidaAtribuicao validador = new ValidaAtribuicao();
+    private AnalisadorSintatico validador = new AnalisadorSintatico();
 
     public Reader(String path) {
         this.path = path;
