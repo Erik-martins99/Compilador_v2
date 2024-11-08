@@ -1,2 +1,6 @@
 Knight p1 = erik + (1 + 1.5) + a + 13431535.34;
-Knight p1 = erik + 1 + 1.5 + a + 13431535.34;
+battle(num+ num < 10+ num++){
+    Knight p1 = 30 - 5;
+}
+Knight p1 = erik + (1 + 1.5) + a + 13431535.34;
+

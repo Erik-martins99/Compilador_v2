@@ -17,10 +17,18 @@ public class AnalisadorSintatico {
 
     public void getExpressao(int start) {
         this.expressao.clear();
+
         for (; start < this.tokens.size(); start++) {
             this.expressao.add(tokens.get(start));
-            if (tokens.get(start).getTipo().equals("PV")) {
-                break;
+
+            if(!this.expressao.stream().map(e -> e.getTipo()).collect(Collectors.toList()).contains("AC")) {
+                if (tokens.get(start).getTipo().equals("PV")) {
+                    break;
+                }
+            } else {
+                if (tokens.get(start).getTipo().equals("FC")) {
+                    break;
+                }
             }
         }
     }
@@ -60,16 +68,22 @@ public class AnalisadorSintatico {
     }
 
     public void validadorSintatico(){
-        getExpressao(0);
+        int point = 0;
+        getExpressao(point);
+
         for (int i=0; i<getNumExpressoes(); i++) {
             if(validaParenteres()){
                 System.out.println(this.validadorDeAtribuicaoDeVariavel.validaAtribuicao(this.expressao));
                 System.out.println(getNumExpressoes());
                 System.out.println(this.tokens.size());
                 System.out.println(this.expressao.size());
-                getExpressao(this.expressao.size());
+                point += this.expressao.size();
+                getExpressao(point);
             } else {
                 break;
+            }
+            for(int j=0; j <this.expressao.size(); j++){
+                System.out.println(this.expressao.get(j));
             }
         }
     }
