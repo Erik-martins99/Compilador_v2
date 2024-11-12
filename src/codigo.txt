@@ -1,6 +1,5 @@
-Knight p1 = erik + (1 + 1.5) + a + 13431535.34;
-battle(num+ num < 10+ num++){
-    Knight p1 = 30 - 5;
-}
-Knight p1 = erik + (1 + 1.5) + a + 13431535.34;
-
+Knight p1 = true;
+Paladin	p2 = (3 + 4 /5 * 8);
+Druid p3 = 10.11;
+Sorcer p4 = "false";
+invocation(3.89 - 1);

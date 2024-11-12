@@ -2,6 +2,7 @@ package Sintatico;
 
 import Lexico.Token;
 import Sintatico.automatos.ValidadorDeAtribuicaoDeVariavel;
+import Sintatico.automatos.ValidadorPrint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class AnalisadorSintatico {
     private ArrayList<Token> expressao = new ArrayList<>();
 
     private ValidadorDeAtribuicaoDeVariavel validadorDeAtribuicaoDeVariavel = new ValidadorDeAtribuicaoDeVariavel();
+    private ValidadorPrint validadorPrint = new ValidadorPrint();
 
     public AnalisadorSintatico() {}
 
@@ -64,6 +66,9 @@ public class AnalisadorSintatico {
                 count++;
             }
         }
+        if(!tiposDeTokens.get(tiposDeTokens.size()-1).equals("PV")){
+            count++;
+        }
         return count;
     }
 
@@ -73,17 +78,29 @@ public class AnalisadorSintatico {
 
         for (int i=0; i<getNumExpressoes(); i++) {
             if(validaParenteres()){
-                System.out.println(this.validadorDeAtribuicaoDeVariavel.validaAtribuicao(this.expressao));
-                System.out.println(getNumExpressoes());
-                System.out.println(this.tokens.size());
-                System.out.println(this.expressao.size());
-                point += this.expressao.size();
-                getExpressao(point);
+                if(this.validadorDeAtribuicaoDeVariavel.validaAtribuicao(this.expressao)) {
+                    point += this.expressao.size();
+                    getExpressao(point);
+                } else if(this.validadorPrint.validaPrint(this.expressao)){
+                    point += this.expressao.size();
+                    getExpressao(point);
+                }
+                else {
+                    System.out.print("ERRO:>>>");
+                    for(int j=0; j < this.expressao.size(); j++){
+                        System.out.print(this.expressao.get(j).getSimbolo() + " ");
+                    }
+                    System.out.print("<<<!!!" +
+                            " LINHA: " +
+                            this.expressao.get(0).getLinha() +
+                            " COLUNA: " +
+                            this.expressao.get(0).getColuna());
+                }
             } else {
                 break;
             }
             for(int j=0; j <this.expressao.size(); j++){
-                System.out.println(this.expressao.get(j));
+                //System.out.println(this.expressao.get(j));
             }
         }
     }

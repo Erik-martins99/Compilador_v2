@@ -22,7 +22,7 @@ public class ValidadorDeAtribuicaoDeVariavel {
 
 
     public boolean getPrimeiroOuUltimoValor(String value){
-        String[] variablesTypes = {"ID", "NUM_INT", "NUM_REAL"};
+        String[] variablesTypes = {"ID", "NUM_INT", "NUM_REAL", "VL_TRUE", "VL_FALSE", "AP", "FP", "TXTSTRING"};
         for(int i=0; i < variablesTypes.length; i++){
             if(value.equals(variablesTypes[i])){
                 return true;
@@ -88,10 +88,13 @@ public class ValidadorDeAtribuicaoDeVariavel {
                     }
                     break;
                 case 3:
+                    if (tokens.get(contador).getTipo().equals("AP")) {
+                        contador++;
+                    }
                     if(getPrimeiroOuUltimoValor(tokens.get(contador).getTipo())){
                         contador ++;
                         if (contador >= (tokens.size())) {
-                            System.out.println("ERROR: Falta do simbolo (;)!!!");
+                            System.out.println("ERROR: Falta do simbolo \";\"!!!");
                             return false;
                         }
                         else if(getFinal(tokens.get(contador).getTipo())){
@@ -103,7 +106,8 @@ public class ValidadorDeAtribuicaoDeVariavel {
                                 if (getSimbolos(tokens.get(contador).getTipo())) {
                                     contador++;
                                 } else {
-                                    System.out.println("ERROR: Valor atribuido invalido!!!");
+                                    System.out.println("ERROR: Valor atribuido invalido 1!!!");
+                                    System.out.println(tokens.get(contador));
                                     return false;
                                 }
                                 if (tokens.get(contador).getTipo().equals("AP")) {
@@ -112,7 +116,8 @@ public class ValidadorDeAtribuicaoDeVariavel {
                                 if (getPrimeiroOuUltimoValor(tokens.get(contador).getTipo())) {
                                     contador++;
                                 } else {
-                                    System.out.println("ERROR: Valor atribuido invalido!!!");
+                                    System.out.println("ERROR: Valor atribuido invalido 2!!!");
+                                    System.out.println(tokens.get(contador));
                                     return false;
                                 }
                                 if (tokens.get(contador).getTipo().equals("FP")) {
@@ -131,6 +136,7 @@ public class ValidadorDeAtribuicaoDeVariavel {
 
                     } else {
                         System.out.println("ERROR: Valor atribuido invalido!!!");
+                        System.out.println(tokens.get(contador));
                         return false;
                     }
                     break;

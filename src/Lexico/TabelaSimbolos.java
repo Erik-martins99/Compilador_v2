@@ -43,7 +43,7 @@ public class TabelaSimbolos {
             return t.INTEGER.toString();
         } else if(value.equals("Druid")) {
             return t.DOUBLE.toString();
-        } else if(value.equals("Sorser")) {
+        } else if(value.equals("Sorcer")) {
             return t.STRING.toString();
         } else if(value.equals("Knight")) {
             return t.BOOLEAN.toString();
