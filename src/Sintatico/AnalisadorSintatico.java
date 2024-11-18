@@ -1,7 +1,9 @@
 package Sintatico;
 
 import Lexico.Token;
+import Sintatico.automatos.ValidadorBreak;
 import Sintatico.automatos.ValidadorDeAtribuicaoDeVariavel;
+import Sintatico.automatos.ValidadorIf;
 import Sintatico.automatos.ValidadorPrint;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ public class AnalisadorSintatico {
 
     private ValidadorDeAtribuicaoDeVariavel validadorDeAtribuicaoDeVariavel = new ValidadorDeAtribuicaoDeVariavel();
     private ValidadorPrint validadorPrint = new ValidadorPrint();
+    private ValidadorIf validadorIf = new ValidadorIf();
+    private ValidadorBreak validadorBreak = new ValidadorBreak();
 
     public AnalisadorSintatico() {}
 
@@ -28,7 +32,7 @@ public class AnalisadorSintatico {
                     break;
                 }
             } else {
-                if (tokens.get(start).getTipo().equals("FC")) {
+                if (tokens.get(start).getTipo().equals("AC")) {
                     break;
                 }
             }
@@ -65,6 +69,9 @@ public class AnalisadorSintatico {
             if(tiposDeTokens.get(i).equals("PV")){
                 count++;
             }
+            else if(tiposDeTokens.get(i).equals("AC")){
+                count++;
+            }
         }
         if(!tiposDeTokens.get(tiposDeTokens.size()-1).equals("PV")){
             count++;
@@ -72,18 +79,38 @@ public class AnalisadorSintatico {
         return count;
     }
 
-    public void validadorSintatico(){
+    public boolean validadorSintatico(){
         int point = 0;
         getExpressao(point);
+        boolean valid = false;
 
         for (int i=0; i<getNumExpressoes(); i++) {
             if(validaParenteres()){
                 if(this.validadorDeAtribuicaoDeVariavel.validaAtribuicao(this.expressao)) {
                     point += this.expressao.size();
                     getExpressao(point);
+                    valid = true;
                 } else if(this.validadorPrint.validaPrint(this.expressao)){
                     point += this.expressao.size();
                     getExpressao(point);
+                    valid = true;
+                } else if(this.validadorIf.validaIf(this.expressao)){
+                    point += this.expressao.size();
+                    getExpressao(point);
+                    valid = true;
+                } else if(this.validadorIf.validaElse(this.expressao)) {
+                    point += this.expressao.size();
+                    getExpressao(point);
+                    if(this.expressao.get(0).getTipo().equals("FC")){
+                        this.expressao.remove(0);
+                        valid = true;
+                    }
+                } else if(this.validadorBreak.validaBreak(this.expressao)) {
+                    point += this.expressao.size();
+                    getExpressao(point);
+                    valid = true;
+                } else if(this.tokens.get(this.tokens.size()-1).getTipo().equals("FC")){
+                    this.tokens.remove(this.tokens.size()-1);
                 }
                 else {
                     System.out.print("ERRO:>>>");
@@ -95,6 +122,7 @@ public class AnalisadorSintatico {
                             this.expressao.get(0).getLinha() +
                             " COLUNA: " +
                             this.expressao.get(0).getColuna());
+                    return false;
                 }
             } else {
                 break;
@@ -102,6 +130,15 @@ public class AnalisadorSintatico {
             for(int j=0; j <this.expressao.size(); j++){
                 //System.out.println(this.expressao.get(j));
             }
+        }
+        return valid;
+    }
+
+    public void valida(){
+        if(validadorSintatico()){
+            System.out.println("EXPRESSÂO ACEITA!!!");
+        } else {
+            System.out.println("EXPRESSÂO NÃO ACEITA!!!");
         }
     }
 

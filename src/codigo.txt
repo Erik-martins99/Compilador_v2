@@ -1,5 +1,18 @@
-Knight p1 = true;
-Paladin	p2 = (3 + 4 /5 * 8);
-Druid p3 = 10.11;
+
 Sorcer p4 = "false";
 invocation(3.89 - 1);
+invocation("teste" + id);
+invocation(erik);
+
+quest(num == 5 OR true) {
+			kill;
+		} peace {
+			invocation("erik 2");
+		}
+
+
+
+
+
+
+

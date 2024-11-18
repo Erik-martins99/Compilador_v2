@@ -65,7 +65,6 @@ public class ValidadorDeAtribuicaoDeVariavel {
                         estado ++;
                         contador ++;
                     } else {
-                        System.out.println("ERROR: Tipo de variavel invalida!!!");
                         return false;
                     }
                     break;
@@ -74,7 +73,6 @@ public class ValidadorDeAtribuicaoDeVariavel {
                         estado ++;
                         contador ++;
                     } else {
-                        System.out.println("ERROR: Nome da variavel invalid0!!!");
                         return false;
                     }
                     break;
@@ -83,7 +81,6 @@ public class ValidadorDeAtribuicaoDeVariavel {
                         estado ++;
                         contador ++;
                     } else {
-                        System.out.println("SERROR: Simbolo de atribuição não presentes!!!");
                         return false;
                     }
                     break;
@@ -94,7 +91,6 @@ public class ValidadorDeAtribuicaoDeVariavel {
                     if(getPrimeiroOuUltimoValor(tokens.get(contador).getTipo())){
                         contador ++;
                         if (contador >= (tokens.size())) {
-                            System.out.println("ERROR: Falta do simbolo \";\"!!!");
                             return false;
                         }
                         else if(getFinal(tokens.get(contador).getTipo())){
@@ -106,8 +102,6 @@ public class ValidadorDeAtribuicaoDeVariavel {
                                 if (getSimbolos(tokens.get(contador).getTipo())) {
                                     contador++;
                                 } else {
-                                    System.out.println("ERROR: Valor atribuido invalido 1!!!");
-                                    System.out.println(tokens.get(contador));
                                     return false;
                                 }
                                 if (tokens.get(contador).getTipo().equals("AP")) {
@@ -128,20 +122,18 @@ public class ValidadorDeAtribuicaoDeVariavel {
                                     break;
                                 }
                                 if (contador >= (tokens.size())) {
-                                    System.out.println("ERROR: Falta do simbolo (;)!!!");
                                     return false;
                                 }
                             }
                         }
 
                     } else {
-                        System.out.println("ERROR: Valor atribuido invalido!!!");
                         System.out.println(tokens.get(contador));
                         return false;
                     }
                     break;
                 case 4:
-                    System.out.println("Variavel valida!");
+                    System.out.println(">>> Variavel valida!");
                     controle = false;;
                     return true;
             }

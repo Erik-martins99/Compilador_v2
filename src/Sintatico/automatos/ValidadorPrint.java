@@ -47,8 +47,10 @@ public class ValidadorPrint {
         boolean controle = true;
 
         if(!tokens.get(tokens.size() - 1).getTipo().equals("PV")) {
-            System.out.println("ERROR: Falta do simbolo \";\"!!!");
             return false;
+        }
+        if(tokens.get(0).getTipo().equals("FC")){
+            contador++;
         }
 
         while(controle){
@@ -58,7 +60,6 @@ public class ValidadorPrint {
                         contador ++;
                         estado ++;
                     } else {
-                        System.out.println("ERROR: Tipo de variavel invalida!!!");
                         return false;
                     }
                     break;
@@ -70,7 +71,6 @@ public class ValidadorPrint {
                         if(getValues(tokens.get(contador).getTipo())){
                             contador++;
                         } else {
-                            System.out.println("ERROR: Valor invalido dentro do print!!!");
                             return false;
                         }
                         if(tokens.get(contador).getTipo().equals("FP")){
@@ -81,19 +81,16 @@ public class ValidadorPrint {
                             if(tokens.get(contador).getTipo().equals("OPSOMA")){
                                 contador++;
                             } else {
-                                System.out.println("ERROR: falta de operador \"+\"");
                                 return false;
                             }
                         } else {
                             if(tokens.get(contador + 1).getTipo().equals("FP")){
-                                System.out.println("ERROR: dentro dos parenteres ()");
                                 return false;
                             } else {
                                 if(getNumeros(tokens.get(contador + 1).getTipo())){
                                     if(getSimbolos(tokens.get(contador).getTipo())){
                                         contador++;
                                     } else {
-                                        System.out.println("ERROR: Simbolo invalido entre valores!!!");
                                         return false;
                                     }
                                 }
@@ -103,7 +100,7 @@ public class ValidadorPrint {
                     estado++;
                     break;
                 case 2:
-                    System.out.println("Função print valida!");
+                    System.out.println(">>> Função PRINT valida!");
                     controle = false;
                     return true;
             }

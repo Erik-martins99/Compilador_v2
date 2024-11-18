@@ -50,7 +50,7 @@ public class Reader {
                 System.out.println(tokens.get(i));
             }
             this.validador.setTokens(tokens);
-            this.validador.validadorSintatico();
+            this.validador.valida();
 
             Output.gerarTxt(tokens);
         } catch (
