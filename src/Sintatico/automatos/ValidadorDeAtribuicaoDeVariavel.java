@@ -58,6 +58,10 @@ public class ValidadorDeAtribuicaoDeVariavel {
         int contador = 0;
         boolean controle = true;
 
+        if(tokens.get(0).getTipo().equals("FC")){
+            contador++;
+        }
+
         while(controle){
             switch(estado) {
                 case 0:

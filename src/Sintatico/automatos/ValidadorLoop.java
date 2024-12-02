@@ -4,9 +4,9 @@ import Lexico.Token;
 
 import java.util.ArrayList;
 
-public class ValidadorIf {
+public class ValidadorLoop {
 
-    public ValidadorIf() {
+    public ValidadorLoop() {
     }
 
     public boolean getValues(String value){
@@ -41,7 +41,7 @@ public class ValidadorIf {
         return false;
     }
 
-    public boolean validaIf(ArrayList<Token> tokens) {
+    public boolean validaWhile(ArrayList<Token> tokens) {
         int estado = 0;
         int contador = 0;
         boolean controle = true;
@@ -49,11 +49,14 @@ public class ValidadorIf {
         if(!tokens.get(tokens.size() - 1).getTipo().equals("AC")) {
             return false;
         }
+        if(tokens.get(0).getTipo().equals("FC")){
+            contador++;
+        }
 
         while(controle){
             switch(estado) {
                 case 0:
-                    if(tokens.get(contador).getTipo().equals("FUN_IF")){
+                    if(tokens.get(contador).getTipo().equals("FUN_WHILE")){
                         contador ++;
                         estado ++;
                     } else {
@@ -111,51 +114,7 @@ public class ValidadorIf {
                     }
                     break;
                 case 4:
-                    System.out.println(">>> Função IF valida!");
-                    controle = false;
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean validaElse(ArrayList<Token> tokens) {
-        int estado = 0;
-        int contador = 0;
-        boolean controle = true;
-
-        if(!tokens.get(tokens.size() - 1).getTipo().equals("AC")) {
-            return false;
-        }
-
-        while(controle){
-            switch(estado) {
-                case 0:
-                    if(tokens.get(contador).getTipo().equals("FC")){
-                        contador ++;
-                        estado ++;
-                    } else {
-                        return false;
-                    }
-                    break;
-                case 1:
-                    if(tokens.get(contador).getTipo().equals("FUN_ELSE")){
-                        contador ++;
-                        estado ++;
-                    } else {
-                        return false;
-                    }
-                    break;
-                case 2:
-                    if(tokens.get(contador).getTipo().equals("AC")){
-                        contador ++;
-                        estado ++;
-                    } else {
-                        return false;
-                    }
-                    break;
-                case 3:
-                    System.out.println(">>> Função ELSE valida!");
+                    System.out.println(">>> Função WHILE valida!");
                     controle = false;
                     return true;
             }

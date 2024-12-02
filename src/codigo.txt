@@ -1,14 +1,25 @@
 
-Sorcer p4 = "false";
+Sorcer teste = "false";
+Sorcer nome = "Erik";
+
 invocation(3.89 - 1);
-invocation("teste" + id);
-invocation(erik);
+invocation("Olá" + nome);
+invocation(teste);
 
 quest(num == 5 OR true) {
+            invocation("SIM");
 			kill;
 		} peace {
-			invocation("erik 2");
+			invocation("NÃO");
 		}
+
+maze(true){
+    invocation("teste 1");
+}
+invocation("teste 2");
+ 
+
+
 
 
 
